@@ -1,3 +1,5 @@
+    
+ <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,8 +70,28 @@ a {
 </style>
 </head>
 <body>
-
-<form action="#">
+ <div class="container" style="width:50%; height: 50%">
+    <h1>Login</h1>
+    <p>Please login to access the stack.</p>
+    <hr>
+    <form:form modelAttribute="login">
+		<span style="color:red;">
+			<form:errors path="*"/>
+			</span>
+			<br/>
+			 Email Address<form:input path="email"/><br/>
+		
+			
+			Password:<form:input path="password"/><br/>
+		     <div class="clearfix">
+			<input type="submit" value="login"/>
+			
+			 <div class="container signup">
+	    <p>New Here? <a href="${pageContext.request.contextPath}/signup.htm">Sign Up</a></p>
+	  </div>
+			</div>
+		</form:form>
+<%-- <form action="#">
   <div class="container" style="width:50%; height: 50%" >
     <h1>Login Here</h1>
     <hr>
@@ -83,13 +105,13 @@ a {
     <hr>
 
     <button type="submit" class="registerbtn">Login</button>
-    <a href = "dashboard.htm"><input type = "button" value ="signUp"></a>
+    <a href = "${pageContext.request.contextPath}/dashboard.htm"><input type = "button" value ="signUp"></a>
   
 	  <div class="container signup">
 	    <p>New Here? <a href="${pageContext.request.contextPath}/signup.htm">Sign Up</a></p>
 	  </div>
   </div>
-</form>
+</form> --%>
 
 </body>
 </html>

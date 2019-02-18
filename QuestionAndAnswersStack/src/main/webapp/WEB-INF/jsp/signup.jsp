@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+ <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <meta charset = "utf-8">
@@ -75,13 +77,27 @@ button:hover {
 }
 </style>
 <body>
-
-<form action="signup" style="border:1px solid #ccc">
+	
+<%-- <form action="${pageContext.request.contextPath}/signup.htm" method="post" style="border:1px solid #ccc"> --%>
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
-	<label for="email"><b>Name</b></label>
+    <form:form modelAttribute="signUp">
+		<span style="color:red;">
+			<form:errors path="*"/>
+			</span>
+			<br/>
+			 Name: <form:input path="name"/><br/>
+			 Email Address<form:input path="email"/><br/>
+		
+			
+			Password:<form:input path="psw"/><br/>
+		     <div class="clearfix">
+			<input type="submit" value="signup"/>
+			</div>
+		</form:form>
+<!-- 	<label for="email"><b>Name</b></label>
     <input type="text" placeholder="Enter Name" name="name" required>
 	
     <label for="email"><b>Email</b></label>
@@ -92,12 +108,12 @@ button:hover {
     
     <div class="clearfix">
       <button type="submit" class="signupbtn">Sign Up</button>
-    </div>
+    </div> -->
     <div>
     Already have an Account <a href="${pageContext.request.contextPath}/login.htm">Sign-In Here</a>
     </div>
   </div>
-</form>
+<%-- </form> --%>
 
 
 </body>

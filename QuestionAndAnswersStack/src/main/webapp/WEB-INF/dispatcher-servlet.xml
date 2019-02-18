@@ -3,19 +3,28 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	<import resource="service-bean.xml"/>
 	
 	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
 				<prop key="/login.htm">loginController</prop>
 				<prop key="/signup.htm">signupController</prop>
+				<prop key="/dashboard.htm">dashboardController</prop>
 			</props>
 		</property> 
 	</bean>
 	
-	<bean id ="loginController" class="com.qc.controller.LoginController"/>
-	<bean id="signupController" class="com.qc.controller.SignupController"></bean>
+	<bean id ="loginController" class="com.qc.controller.LoginController">
+	 <property name="manageQuickCodeService" ref="manageQuickCodeService" >
+	     </property>
+	</bean>
+	<bean id="signupController" class="com.qc.controller.SignupController">
 	
+	     <property name="manageQuickCodeService" ref="manageQuickCodeService" >
+	     </property>
+	</bean>
+	<bean id="dashboardController" class="com.qc.controller.DashboardController"></bean>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>
