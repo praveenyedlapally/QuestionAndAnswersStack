@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<import resource="service-bean.xml"/>
-	
-	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+
+<!-- 	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
 				<prop key="/login.htm">loginController</prop>
 				<prop key="/signup.htm">signupController</prop>
 				<prop key="/dashboard.htm">dashboardController</prop>
+				<prop key="/dashboard">dashboardController</prop>
+				<prop key="/*/dashboard">dashboardController</prop>
+				<prop key="/*/dashboard.htm">dashboardController</prop>
+				
 			</props>
 		</property> 
-	</bean>
+	</bean> -->
+	
+	<mvc:annotation-driven />
 	
 	<bean id ="loginController" class="com.qc.controller.LoginController">
 	 <property name="manageQuickCodeService" ref="manageQuickCodeService" >
@@ -21,10 +31,21 @@
 	</bean>
 	<bean id="signupController" class="com.qc.controller.SignupController">
 	
-	     <property name="manageQuickCodeService" ref="manageQuickCodeService" >
-	     </property>
+	     <property name="manageQuickCodeService" ref="manageQuickCodeService" />
+	     
 	</bean>
-	<bean id="dashboardController" class="com.qc.controller.DashboardController"></bean>
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="message" />
+	</bean>
+	 <bean id="dashboardController" class="com.qc.controller.DashboardController">
+	      <property name="manageQuickCodeService" ref="manageQuickCodeService" />
+		
+	 </bean>
+	 <bean id="" class="com.qc.controller.AnswerController">
+	 	<property name="manageQuickCodeService" ref="manageQuickCodeService"/>
+	 </bean>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>

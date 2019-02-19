@@ -22,5 +22,11 @@
 	<bean id="loginDao" class="com.qc.dao.LoginDao">
 		<constructor-arg name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
+	<bean id="questionDao" class="com.qc.dao.QuestionDao">
+	 	<constructor-arg name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	<bean id="answerDao" class="com.qc.dao.AnswerDao">
+		<constructor-arg name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
 
 </beans>

@@ -7,6 +7,8 @@
   <bean id="manageQuickCodeService" class="com.qc.service.ManageQuickCodeService">
 	<constructor-arg name="signUpDao" ref="signUpDao"/>
 	<constructor-arg name="loginDao" ref="loginDao"/>
+	<constructor-arg name="questionDao" ref="questionDao"/>
+	<constructor-arg name="answerDao" ref="answerDao"/>
 </bean>
 
 </beans>
