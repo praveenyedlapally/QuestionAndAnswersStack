@@ -43,23 +43,56 @@
 <div class="container">
 <div class= "row">
 	<div class="col-md-8">
-		<h2>All Questions</h2>
+		<h2>All Questions</h2><hr>
 		<p id = "resultQuestion"></p>
 		
 		
-		 <p><c:forEach items="${questionDtos}" var="question">
-			<span></span><h4><c:out value="${question.question}"></c:out></h4>
+		 <c:forEach items="${questionDtos}" var="question">
+			<span><strong><h4>Q.<c:out value="${question.questionId}"></c:out>
+					<c:out value="${question.question}"></c:out></strong></h4>
 		 		<button class="btn btn-danger navbar-btn btn-xs" data-toggle="modal" data-target="#answerQuestion">Answer Question</button>
+		 		<button class="btn btn-warning navbar-btn btn-xs">Delete Answer</button>
+		 		<button class="btn btn-success navbar-btn btn-xs">Update Answer</button>
+		 		<form:form   method="POST" action="dashboard/answer">
+				  <div class="modal fade" id="answerQuestion" role="dialog">
+				    <div class="modal-dialog">
+				    
+				      <!-- Modal content-->
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">Write Your Answer Here</h4>
+				        </div>
+				        <div class="modal-body">
+				           <input type="hidden" name="email" value=${email}>
+				           
+				           	<input type="hidden" name="questionId" value=${question.questionId}>
+				          
+				             <input type="hidden" name="email" value=${email}>
+						         <textarea rows="8" cols="70" name="answer" id="answerQuestion" >
+										 
+								</textarea>
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="submit" class="btn btn-default">Submit Question</button>
+				        </div>
+				      </div>
+				      
+				    </div>
+				  </div>
+				</form:form>
 			</span>
 		
 			<c:forEach items="${answerDtos}" var="answer">
 				<c:if test="${question.questionId == answer.questionId}">
-					<br>
-					<c:out value="${answer.answerText}"></c:out>
+					<b> 
+						<c:out value="${answer.answerText}"></c:out>
+					</b>
 				</c:if>
 				
-			</c:forEach>
-		</c:forEach></p> 
+			</c:forEach><hr>
+		</c:forEach>
 		
 	</div>
 	<div class="col-md-4">
@@ -95,7 +128,7 @@
 		  </div>
   </form:form>
    <!-- Modal -->
-<form:form   method="POST" action="dashboard/answer">
+<%-- <form:form   method="POST" action="dashboard/answer">
   <div class="modal fade" id="answerQuestion" role="dialog">
     <div class="modal-dialog">
     
@@ -107,7 +140,9 @@
         </div>
         <div class="modal-body">
            <input type="hidden" name="email" value=${email}>
-           <input type="hidden" name="questionId" value=${question.questionId}>
+           
+           	<input type="hidden" name="questionId" value=${question.questionId}>
+          
              <input type="hidden" name="email" value=${email}>
 		         <textarea rows="8" cols="70" name="answer" id="answerQuestion" >
 						 
@@ -121,7 +156,7 @@
       
     </div>
   </div>
- </form:form>
+ </form:form> --%>
  
   
 </div>
