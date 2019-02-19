@@ -74,4 +74,27 @@ public class DashboardController {
  		}
 		return "dashboard";
 	}
+	@RequestMapping(value = "/answer", method = RequestMethod.POST)
+	public String addAnswerData(@RequestParam("answer") String answer,@RequestParam("questionId") int questionId,@RequestParam("email") String email, ModelMap modelMap) {
+		
+		  AnswerDto answerDto  =new AnswerDto();
+	      answerDto.setQuestion("");
+	      answerDto.setQuestionId(questionId);
+		  answerDto.setEmail(email);
+		  answerDto.setAnswerText(answer);	
+	    
+        manageQuickCodeService.saveAnswer(answerDto);
+ 		
+ 		/*List<AnswerDto> answerDtos=manageQuickCodeService.getAnswers();
+ 		for(AnswerDto answerDto :answerDtos)
+ 		{
+ 			System.out.println(answerDto.getAnswerText()+"    "+answerDto.getQuestion()+"    "+answerDto.getEmail());
+ 		}*/
+ 		List<QuestionDto> questionDtos=manageQuickCodeService.getQuestions();
+ 		for(QuestionDto questionDto2 :questionDtos)
+ 		{
+ 			System.out.println(questionDto2.getEmail()+" all Questions      "+questionDto2.getQuestion());
+ 		}
+		return "dashboard";
+	}
 }

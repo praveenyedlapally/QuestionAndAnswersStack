@@ -49,7 +49,7 @@
 		
 		 <p><c:forEach items="${questionDtos}" var="question">
 			<span></span><h4><c:out value="${question.question}"></c:out></h4>
-		 		<button class="btn btn-danger navbar-btn btn-xs" data-toggle="modal" data-target="#answerQuestion">Post Question</button>
+		 		<button class="btn btn-danger navbar-btn btn-xs" data-toggle="modal" data-target="#answerQuestion">Answer Question</button>
 			</span>
 		
 			<c:forEach items="${answerDtos}" var="answer">
@@ -95,7 +95,7 @@
 		  </div>
   </form:form>
    <!-- Modal -->
-<form:form   method="POST" action="dashboard/question">
+<form:form   method="POST" action="dashboard/answer">
   <div class="modal fade" id="answerQuestion" role="dialog">
     <div class="modal-dialog">
     
@@ -107,7 +107,9 @@
         </div>
         <div class="modal-body">
            <input type="hidden" name="email" value=${email}>
-		         <textarea rows="8" cols="70" name="question" id="writeQuestion" >
+           <input type="hidden" name="questionId" value=${question.questionId}>
+             <input type="hidden" name="email" value=${email}>
+		         <textarea rows="8" cols="70" name="answer" id="answerQuestion" >
 						 
 				</textarea>
         </div>
